@@ -1,7 +1,7 @@
 import React from "react";
 import { Row, Col } from "react-bootstrap";
-import { FaApple } from "react-icons/fa";
-import { SiGooglechrome, SiVisualstudiocode } from "react-icons/si";
+import { FaApple, FaSafari } from "react-icons/fa";
+import { SiVisualstudiocode } from "react-icons/si";
 
 function Toolstack() {
   return (
@@ -15,11 +15,11 @@ function Toolstack() {
         </div>
       </Col>
 
-      {/* Chrome */}
+      {/* Safari */}
       <Col xs="auto">
         <div className="apple-pill">
-          <SiGooglechrome className="apple-icon" />
-          <span className="apple-text">Google Chrome</span>
+          <FaSafari className="apple-icon" />
+          <span className="apple-text">Safari</span>
         </div>
       </Col>
 

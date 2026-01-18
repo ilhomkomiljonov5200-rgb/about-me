@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
+
 import homeLogo from "../../Assets/home-main.svg";
 import Particle from "../Particle";
 import Home2 from "./Home2";
@@ -9,15 +10,40 @@ import { AiFillGithub, AiFillInstagram } from "react-icons/ai";
 import { FaTelegramPlane } from "react-icons/fa";
 
 function Home() {
+
+  /* ===============================
+     🟣 MOUSE TRAIL ANIMATION
+     =============================== */
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      const dot = document.createElement("span");
+      dot.className = "cursor-dot";
+      dot.style.left = `${e.clientX}px`;
+      dot.style.top = `${e.clientY}px`;
+
+      document.body.appendChild(dot);
+
+      setTimeout(() => {
+        dot.remove();
+      }, 500);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
   return (
     <section>
+      {/* ================= HERO SECTION ================= */}
       <Container fluid className="home-section" id="home">
         <Particle />
 
         <Container className="home-content">
-          <Row>
+          <Row className="align-items-center">
+
+            {/* LEFT SIDE TEXT */}
             <Col md={7} className="home-header">
-              <h1 style={{ paddingBottom: 15 }} className="heading">
+              <h1 className="heading">
                 Hi There!{" "}
                 <span className="wave" role="img" aria-label="wave">
                   👋🏻
@@ -25,32 +51,36 @@ function Home() {
               </h1>
 
               <h1 className="heading-name">
-                I'M
-                <strong className="main-name"> KOMILJONOV ILHOM</strong>
+                I'M{" "}
+                <strong className="main-name">
+                  KOMILJONOV ILHOM
+                </strong>
               </h1>
 
-              <div style={{ padding: 50, textAlign: "left" }}>
+              <div className="type-container">
                 <Type />
               </div>
             </Col>
 
-            <Col md={5} style={{ paddingBottom: 20 }}>
+            {/* RIGHT SIDE IMAGE */}
+            <Col md={5} className="home-img-col">
               <img
                 src={homeLogo}
-                alt="home"
-                className="img-fluid"
-                style={{ maxHeight: "450px" }}
+                alt="home illustration"
+                className="img-fluid home-img floating-img"
               />
             </Col>
+
           </Row>
         </Container>
       </Container>
 
+      {/* ================= ABOUT PREVIEW ================= */}
       <Home2 />
 
-      {/* SOCIAL LINKS */}
+      {/* ================= SOCIAL LINKS ================= */}
       <Container>
-        <Row style={{ paddingTop: "50px", paddingBottom: "80px" }}>
+        <Row className="home-social-row">
           <Col md={12} className="home-about-social">
             <h1>Find Me On</h1>
             <p>
@@ -58,7 +88,7 @@ function Home() {
             </p>
 
             <ul className="home-about-social-links">
-              {/* GitHub */}
+
               <li className="social-icons">
                 <a
                   href="https://github.com/ilhomkomiljonov5200-rgb"
@@ -70,7 +100,6 @@ function Home() {
                 </a>
               </li>
 
-              {/* Telegram */}
               <li className="social-icons">
                 <a
                   href="https://t.me/Ilhom_Komiljonov"
@@ -82,7 +111,6 @@ function Home() {
                 </a>
               </li>
 
-              {/* Instagram */}
               <li className="social-icons">
                 <a
                   href="https://www.instagram.com/komi1jonov_x/"
@@ -93,6 +121,7 @@ function Home() {
                   <AiFillInstagram />
                 </a>
               </li>
+
             </ul>
           </Col>
         </Row>
